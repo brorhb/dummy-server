@@ -6,24 +6,34 @@ const port = 3000
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+function generateResponse(req, res) {
+    if (req.body) {
+        return res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    } else if (req.query) {
+        const { status, response } = req.query
+        return res.status(status).send(response)
+    }
+}
+
+
 app.get('*', (req, res) => {
-    res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    generateResponse(req, res)
 })
 
 app.post('*', (req, res) => {
-    res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    generateResponse(req, res)
 })
 
 app.put('*', (req, res) => {
-    res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    generateResponse(req, res)
 })
 
 app.delete('*', (req, res) => {
-    res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    generateResponse(req, res)
 })
 
 app.patch('*', (req, res) => {
-    res.status(req.body.status ?? 200).send(req.body.response ?? {})
+    generateResponse(req, res)
 })
 
 app.listen(port, () => {
