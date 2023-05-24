@@ -17,7 +17,7 @@ function generateResponse(req, res) {
 }
 
 function isEmptyObject(obj) {
-  return Object.keys(obj).length === 0;
+  return Object.keys(obj).length === 0
 }
 
 app.get('*', (req, res) => {
