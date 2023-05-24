@@ -7,14 +7,18 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 function generateResponse(req, res) {
-    if (req.body) {
+    if (isEmptyObject(req.body) === false) {
         return res.status(req.body.status ?? 200).send(req.body.response ?? {})
     } else if (req.query) {
         const { status, response } = req.query
+        console.log(req.query)
         return res.status(status).send(response)
     }
 }
 
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0;
+}
 
 app.get('*', (req, res) => {
     generateResponse(req, res)
