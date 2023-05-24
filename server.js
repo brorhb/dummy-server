@@ -58,5 +58,12 @@ GET: http://localhost:3000/mymockendpoint
 }
 
 The app looks for the key status, for the return status, and response for the response
+
+You can also send in status and response as query params
+
+
+Example:
+
+GET: http://localhost:3000/mymockendpoint?status=400&response={"error":"Bad request"}
   `)
 })
